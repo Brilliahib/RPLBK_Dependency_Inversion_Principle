@@ -1,5 +1,6 @@
 "use client";
 
+import { Card, CardHeader } from "@/components/ui/card";
 import { ApiUserRepository } from "@/http/user/get-all-user";
 import { User } from "@/types/user";
 import { useEffect, useState } from "react";
@@ -14,14 +15,20 @@ const Home = () => {
   }, []);
 
   return (
-    <div>
-      <h1>User List</h1>
-      <ul>
-        {users.map((user) => (
-          <li key={user.id}>{user.name}</li>
-        ))}
-      </ul>
-    </div>
+    <section className="flex flex-col pad-x">
+      <div className="text-left">
+        <h1 className="text-xl font-bold mb-4">User List</h1>
+        <ul className="gap-4 flex flex-col w-full">
+          {users.map((user) => (
+            <Card key={user.id}>
+              <CardHeader>
+                <p>{user.name}</p>
+              </CardHeader>
+            </Card>
+          ))}
+        </ul>
+      </div>
+    </section>
   );
 };
 
